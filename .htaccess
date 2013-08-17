@@ -1,0 +1,24 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine on
+  # Must use RewriteBase on www.student.bth.se, Rewritebase for url /~mos/test is /~mos/test/
+  RewriteBase /~krmc12/phpmvc/kmom2/movic/
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule (.*) index.php/$1 [NC,L]
+</IfModule>
+
+# medes varianten:
+#
+#RewriteEngine on
+#
+#RewriteCond %{REQUEST_FILENAME} -s [OR]
+#RewriteCond %{REQUEST_FILENAME} -l [OR]
+#RewriteCond %{REQUEST_FILENAME} -d
+#
+#RewriteRule ^.*$ - [NC,L]
+#RewriteRule ^.*$ index.php [NC,L]
+
+
+#nocase|NC    Makes the pattern comparison case-insensitive. details ...
+#last|L    Stop the rewriting process immediately and don't apply any more rules. Especially note caveats for per-directory and .htaccess context (see also the END flag). details ...
+#http://httpd.apache.org/docs/current/mod/mod_rewrite.html#rewriterule
