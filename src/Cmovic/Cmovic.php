@@ -2,6 +2,8 @@
 /**
 * Main class for movic, holds everything.
 *
+* Som det är nu finns det två sätt olika sätt att få tag i informationen i Cmovic, antingen som global variabel $mo eller via dess instans-metod, Cmovic::Instance(), som returnerar instansen av Cmovic enligt singleton design mönster.
+*
 * @package movicCore
 */
 class Cmovic implements ISingleton {
@@ -23,7 +25,7 @@ class Cmovic implements ISingleton {
     * Constructor
     */
   protected function __construct() {
-    // include the site specific config.php and create a ref to $ly to be used by config.php
+    // include the site specific config.php and create a ref to $mo to be used by config.php
     $mo = &$this; //en fix för att variabeln $mo skall gå att använda direkt i filen site/config.php.
     require(MOVIC_SITE_PATH.'/config.php');
   }
@@ -57,9 +59,10 @@ class Cmovic implements ISingleton {
     if($controllerExists && $controllerEnabled && $classExists) {
       $rc = new ReflectionClass($className);
       if($rc->implementsInterface('IController')) {
-        if($rc->hasMethod($method)) {
+        $formattedMethod = str_replace(array('_', '-'), '', $method);
+        if($rc->hasMethod($formattedMethod)) {
           $controllerObj = $rc->newInstance();
-          $methodObj = $rc->getMethod($method);
+          $methodObj = $rc->getMethod($formattedMethod);
           $methodObj->invokeArgs($controllerObj, $arguments);
         } else {
           die("404. " . get_class() . ' error: Controller does not contain method.');
@@ -71,10 +74,6 @@ class Cmovic implements ISingleton {
     else { 
       die('404. Page is not found.');
     }
-
-    //debug
-    $this->data['debug']  = "\n\tREQUEST_URI - {$_SERVER['REQUEST_URI']}\n\t";
-    $this->data['debug'] .= "SCRIPT_NAME - {$_SERVER['SCRIPT_NAME']}\n";
   }
 
   /**
@@ -91,6 +90,7 @@ class Cmovic implements ISingleton {
 
     // Include the global functions.php and the functions.php that are part of the theme
     $mo = &$this;
+    include(MOVIC_INSTALL_PATH . '/themes/functions.php');
     $functionsPath = "{$themePath}/functions.php";
     if(is_file($functionsPath)) {
       include $functionsPath;

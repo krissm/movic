@@ -10,6 +10,15 @@
 error_reporting(-1);
 ini_set('display_errors', 1);
 
+/**
+ * Set what to show as debug or developer information in the get_debug() theme helper.
+ */
+$mo->config['debug']['movic'] = true;
+$mo->config['debug']['session'] = false;
+$mo->config['debug']['timer'] = false;
+$mo->config['debug']['db-num-queries'] = false;
+$mo->config['debug']['db-queries'] = false;
+
 /*
 * Define session name
 */
@@ -36,7 +45,7 @@ $mo->config['language'] = 'en';
 * The array-key is matched against the url, for example: 
 * the url 'developer/dump' would instantiate the controller with the key "developer", that is 
 * CCDeveloper and call the method "dump" in that class. This process is managed in:
-* $ly->FrontControllerRoute();
+* $mo->FrontControllerRoute();
 * which is called in the frontcontroller phase from index.php.
 */
 $mo->config['controllers'] = array(
