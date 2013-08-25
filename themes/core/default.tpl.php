@@ -17,4 +17,4 @@
     <?=$footer?>
   </div>
 </body>
-</html>v
+</html>
