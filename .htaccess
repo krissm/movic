@@ -4,6 +4,7 @@
   RewriteBase /phpmvc/kmom2/movic/
   #RewriteBase /~krmc12/phpmvc/kmom2/movic/
   #RewriteBase /~krmc12/phpmvc/kmom3/movic/
+  #RewriteBase /~krmc12/phpmvc/kmom --"X"-- /movic/
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule (.*) index.php/$1 [NC,L]
