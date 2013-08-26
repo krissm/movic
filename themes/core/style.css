@@ -1,3 +1,6 @@
+@import url(style.css);
+@import url(http://fonts.googleapis.com/css?family=Shojumaru);
+
 /** 
 * Description: Core theme for Lydia
 */
@@ -58,4 +61,33 @@ body{
    width:970px;
    background-color:#fff;
    padding: 1em;
+}
+
+#banner {
+  display:table;
+  margin-bottom:10px;
+}
+
+.site-logo,
+.site-title,
+.site-slogan {
+  display:table-cell;
+  width:inherit;
+  vertical-align:middle;
+  text-align:left;
+}
+
+.site-logo {}
+.site-title {
+  font-family: 'Shojumaru', cursive;
+  line-height:0;
+  font-size:3em;
+  padding-left:20px;
+  color:#333;
+  text-shadow:#ccc 4px -4px 4px;
+}
+.site-slogan {
+  font-family: 'Shojumaru', cursive;
+  padding-left:20px;
+  font-style:italic;
 }

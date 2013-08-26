@@ -6,7 +6,7 @@
 */
 class CCGuestbook extends CObject implements IController {
 
-  private $pageTitle = 'Lydia Guestbook Example';
+  private $pageTitle = 'Movic Guestbook Example';
   private $pageHeader = '<h1>Guestbook Example</h1><p>Showing off how to implement a guestbook in Lydia.</p>';
   private $pageForm = "";
   private $pageMessages = '<h2>Current messages</h2>';

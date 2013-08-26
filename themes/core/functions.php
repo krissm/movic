@@ -4,9 +4,7 @@
 */
 $mo->data['header'] = '
 		<div id="banner"> 
-      <a href="index.php"> 
-        <img class="site-logo" src="img/mvclogo.jpg" alt="logo" width="120" height="120" /> 
-      </a> 
+        <img class="site-logo" src="themes/core/img/mvclogo.jpg" alt="logo" width="120" height="120" />
       <p class="site-title">PHPmvc</p> 
       <p class="site-slogan">A PHP-based and MVC-inspired story</p> 
     </div> ';
