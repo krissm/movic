@@ -13,8 +13,8 @@ ini_set('display_errors', 1);
 /**
  * Set what to show as debug or developer information in the get_debug() theme helper.
  */
-$mo->config['debug']['movic'] = true;
-$mo->config['debug']['session'] = false;
+$mo->config['debug']['movic'] = false;
+$mo->config['debug']['session'] = true;
 $mo->config['debug']['timer'] = false;
 $mo->config['debug']['db-num-queries'] = false;
 $mo->config['debug']['db-queries'] = false;
@@ -50,7 +50,8 @@ $mo->config['language'] = 'en';
 */
 $mo->config['controllers'] = array(
 	'index' => array('enabled' => true,'class' => 'CCIndex'),
-	'developer' => array('enabled' => true,'class' => 'CCDeveloper'),);
+	'developer' => array('enabled' => true,'class' => 'CCDeveloper'),
+	'guestbook' => array('enabled' => true, 'class' => 'CCGuestbook'),);
 
 /**
 * Settings for the theme.

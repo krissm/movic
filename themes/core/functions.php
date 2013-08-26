@@ -2,7 +2,16 @@
 /**
 * Helpers for the template file.
 */
-$mo->data['header'] = '<h1>Header: Movic</h1>';
+$mo->data['header'] = '
+		<div id="banner"> 
+      <a href="index.php"> 
+        <img class="site-logo" src="img/mvclogo.jpg" alt="logo" width="120" height="120" /> 
+      </a> 
+      <p class="site-title">PHPmvc</p> 
+      <p class="site-slogan">A PHP-based and MVC-inspired story</p> 
+    </div> ';
+
+//'<h1>Header: Movic</h1>';
 //$mo->data['main']   = '<p>Main: Now with a theme engine, Not much more to report for now.</p>';
 $mo->data['footer'] = <<<EOD
 		
