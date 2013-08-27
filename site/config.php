@@ -14,10 +14,10 @@ ini_set('display_errors', 1);
  * Set what to show as debug or developer information in the get_debug() theme helper.
  */
 $mo->config['debug']['movic'] = false;
-$mo->config['debug']['session'] = true;
+$mo->config['debug']['session'] = false;
 $mo->config['debug']['timer'] = false;
-$mo->config['debug']['db-num-queries'] = false;
-$mo->config['debug']['db-queries'] = false;
+$mo->config['debug']['db-num-queries'] = true;
+$mo->config['debug']['db-queries'] = true;
 
 /**
 * Set database(s).

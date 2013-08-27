@@ -17,19 +17,12 @@ function get_debug() {
   // Get the debug output
   $html = null;
 
-  // if(isset($mo->config['debug']['db-num-queries']) && $mo->config['debug']['db-num-queries'] && isset($mo->db)) {
-  //   $flash = $mo->session->GetFlash('database_numQueries');
-  //   $flash = $flash ? "$flash + " : null;
-  //   $html .= "<p>Database made $flash" . $mo->db->GetNumQueries() . " queries.</p>";
-  // }    
-  // if(isset($mo->config['debug']['db-queries']) && $mo->config['debug']['db-queries'] && isset($mo->db)) {
-  //   $flash = $mo->session->GetFlash('database_queries');
-  //   $queries = $mo->db->GetQueries();
-  //   if($flash) {
-  //     $queries = array_merge($flash, $queries);
-  //   }
-  //   $html .= "<p>Database made the following queries.</p><pre>" . implode('<br/><br/>', $queries) . "</pre>";
-  // }    
+  if(isset($mo->config['debug']['db-num-queries']) && $mo->config['debug']['db-num-queries'] && isset($mo->db)) {
+    $html .= "<p>Database made " . $mo->db->GetNumQueries() . " queries.</p>";
+  }    
+  if(isset($mo->config['debug']['db-queries']) && $mo->config['debug']['db-queries'] && isset($mo->db)) {
+    $html .= "<p>Database made the following queries.</p><pre>" . implode('<br/><br/>', $mo->db->GetQueries()) . "</pre>";
+  }     
   // if(isset($mo->config['debug']['timer']) && $mo->config['debug']['timer']) {
   //   $html .= "<p>Page was loaded in " . round(microtime(true) - $mo->timer['first'], 5)*1000 . " msecs.</p>";
   // }    

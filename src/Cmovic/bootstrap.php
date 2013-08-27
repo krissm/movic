@@ -29,3 +29,11 @@ spl_autoload_register('autoload');
 function htmlent($str, $flags = ENT_COMPAT) {
   return htmlentities($str, $flags, Cmovic::Instance()->config['character_encoding']);
 }
+
+/**
+* Set a default exception handler and enable logging in it. "en standard funktion som samlar upp alla exceptions som inte hanteras. Det ger mig en möjlighet att i framtiden logga dessa till en textfil."
+*/
+function exception_handler($exception) {
+  echo "Movic: Uncaught exception: <p>" . $exception->getMessage() . "</p><pre>" . $exception->getTraceAsString(), "</pre>";
+}
+set_exception_handler('exception_handler');
