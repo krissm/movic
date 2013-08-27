@@ -5,6 +5,27 @@
 */
 
 /**
+* Create a url by prepending the base_url.
+*/
+function base_url($url) {
+  return Cmovic::Instance()->request->base_url . trim($url, '/');
+}
+
+/**
+* Return the current url.
+*/
+function current_url() {
+  return Cmovic::Instance()->request->current_url;
+}
+
+/**
+* Render all views.
+*/
+function render_views() {
+  return Cmovic::Instance()->views->Render();
+}
+
+/**
  * Print debuginformation from the framework.
  */
 function get_debug() {
@@ -34,18 +55,4 @@ function get_debug() {
 //    $html .= "<p>The content of \$_SESSION:</p><pre>" . htmlent(print_r($_SESSION, true)) . "</pre>";
 //  }    
   return $html;
-}
-
-/**
-* Create a url by prepending the base_url.
-*/
-function base_url($url) {
-  return Cmovic::Instance()->request->base_url . trim($url, '/');
-}
-
-/**
-* Return the current url.
-*/
-function current_url() {
-  return Cmovic::Instance()->request->current_url;
 }

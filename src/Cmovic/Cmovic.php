@@ -40,6 +40,9 @@ class Cmovic implements ISingleton {
     if(isset($this->config['database'][0]['dsn'])) {
       $this->db = new CMDatabase($this->config['database'][0]['dsn']);
     }
+
+    // Create a container for all views and theme data
+    $this->views = new CViewContainer();
   }
 
   /**
@@ -95,7 +98,7 @@ class Cmovic implements ISingleton {
     // Get the paths and settings for the theme
     $themeName    = $this->config['theme']['name'];
     $themePath    = MOVIC_INSTALL_PATH . "/themes/{$themeName}";
-    $themeUrl  = $this->request->base_url . "themes/{$themeName}";
+    $themeUrl     = $this->request->base_url . "themes/{$themeName}";
     
     // Add stylesheet path to the $ly->data array
     $this->data['stylesheet'] = "{$themeUrl}/style.css";
@@ -108,13 +111,9 @@ class Cmovic implements ISingleton {
       include $functionsPath;
     }
 
-    // Extract $mo->data to own variables and handover to the template file
-    extract($this->data);      
+    // Extract $mo->data and $mo->view->data to own variables and handover to the template file
+    extract($this->data);    
+    extract($this->views->GetData());  
     include("{$themePath}/default.tpl.php");
-
-    //echo "<h1>I'm Cmovic::ThemeEngineRender</h1><p>You are most welcome. Nothing to render at the moment</p>";
-    //echo "<h2>The content of the config array:</h2><pre>", print_r($this->config, true) . "</pre>";
-    //echo "<h2>The content of the data array:</h2><pre>", print_r($this->data, true) . "</pre>";
-    //echo "<h2>The content of the request array:</h2><pre>", print_r($this->request, true) . "</pre>";
   }
 }  
