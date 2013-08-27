@@ -19,6 +19,11 @@ $mo->config['debug']['timer'] = false;
 $mo->config['debug']['db-num-queries'] = false;
 $mo->config['debug']['db-queries'] = false;
 
+/**
+* Set database(s).
+*/
+$mo->config['database'][0]['dsn'] = 'sqlite:' . MOVIC_SITE_PATH . '/data/.ht.sqlite';
+
 /*
 * Define session name
 */
