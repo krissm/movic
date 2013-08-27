@@ -4,7 +4,7 @@
 * 
 * @package LydiaCore
 */
-class CCGuestbook extends CObject implements IController {
+class CCGuestbook extends CObject implements IController, IHasSQL {
 
   private $pageTitle = 'Movic Guestbook Example';
   private $pageHeader = '<h1>Guestbook Example</h1><p>Showing off how to implement a guestbook in Lydia.</p>';
@@ -83,11 +83,29 @@ class CCGuestbook extends CObject implements IController {
     header('Location: ' . $this->request->CreateUrl('guestbook'));
   }
 
-    /**
+  /**
+  * Implementing interface IHasSQL. Encapsulate all SQL used by this class.
+  *
+  * @param string $key the string that is the key of the wanted SQL-entry in the array.
+  */
+  public static function SQL($key=null) {
+     $queries = array(
+        'create table guestbook'  => "CREATE TABLE IF NOT EXISTS Guestbook (id INTEGER PRIMARY KEY, entry TEXT, created DATETIME default (datetime('now')));",
+        'insert into guestbook'   => 'INSERT INTO Guestbook (entry) VALUES (?);',
+        'select * from guestbook' => 'SELECT * FROM Guestbook ORDER BY id DESC;',
+        'delete from guestbook'   => 'DELETE FROM Guestbook;',
+     );
+     if(!isset($queries[$key])) {
+        throw new Exception("No such SQL query, key '$key' was not found.");
+      }
+      return $queries[$key];
+   }
+
+  /**
    * Save a new entry to database.
    */
   private function SaveNewToDatabase($entry) {
-    $this->db->ExecuteQuery('INSERT INTO Guestbook (entry) VALUES (?);', array($entry)); 
+    $this->db->ExecuteQuery(self::SQL('insert into guestbook'), array($entry)); 
     if($this->db->RowCount() != 1) {
       die('Failed to insert new guestbook item into database.');
     }
@@ -97,7 +115,7 @@ class CCGuestbook extends CObject implements IController {
    * Delete all entries from the database.
    */
   private function DeleteAllFromDatabase() {
-    $this->db->ExecuteQuery('DELETE FROM Guestbook;');
+    $this->db->ExecuteQuery(self::SQL('delete from guestbook'));
   }
 
     /**
@@ -106,7 +124,7 @@ class CCGuestbook extends CObject implements IController {
   private function ReadAllFromDatabase() {
     try {
       $this->db->SetAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-      return $this->db->ExecuteSelectQueryAndFetchAll('SELECT * FROM Guestbook ORDER BY id DESC;');
+      return $this->db->ExecuteSelectQueryAndFetchAll(self::SQL('select * from guestbook'));
     } catch(Exception $e) {
       return array();
     }
@@ -117,7 +135,7 @@ class CCGuestbook extends CObject implements IController {
    */
   private function CreateTableInDatabase() {
     try {
-      $this->db->ExecuteQuery("CREATE TABLE IF NOT EXISTS Guestbook (id INTEGER PRIMARY KEY, entry TEXT, created DATETIME default (datetime('now')));");
+      $this->db->ExecuteQuery(self::SQL('create table guestbook'));
     } catch(Exception$e) {
       die("Failed to open database: " . $this->config['database'][0]['dsn'] . "</br>" . $e);
     }
