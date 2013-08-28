@@ -13,11 +13,12 @@ ini_set('display_errors', 1);
 /**
  * Set what to show as debug or developer information in the get_debug() theme helper.
  */
-$mo->config['debug']['movic'] = false;
-$mo->config['debug']['session'] = false;
-$mo->config['debug']['timer'] = false;
-$mo->config['debug']['db-num-queries'] = true;
-$mo->config['debug']['db-queries'] = true;
+$mo->config['debug']['movic'] 					= false;
+$mo->config['debug']['session'] 				= true;
+$mo->config['debug']['timer'] 					= true;
+$mo->config['debug']['db-num-queries'] 	= true;
+$mo->config['debug']['db-queries'] 			= true;
+$mo->config['session_key']  						= 'movic';
 
 /**
 * Set database(s).

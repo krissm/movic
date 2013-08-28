@@ -8,7 +8,14 @@
 */
 class Cmovic implements ISingleton {
 
-   private static $instance = null;
+  private static $instance = null;
+  public $config = array();
+  public $request;
+  public $data;
+  public $db;
+  public $views;
+  public $session;
+  public $timer = array();
 
    /**
     * Singleton pattern. Get the instance of the latest created object or create a new one. 
@@ -25,6 +32,9 @@ class Cmovic implements ISingleton {
     * Constructor
     */
   protected function __construct() {
+    // time page generation
+    $this->timer['first'] = microtime(true); 
+
     // include the site specific config.php and create a ref to $mo to be used by config.php
     $mo = &$this; //en fix för att variabeln $mo skall gå att använda direkt i filen site/config.php.
     require(MOVIC_SITE_PATH.'/config.php');
@@ -32,6 +42,8 @@ class Cmovic implements ISingleton {
     // Start a named session
     session_name($this->config['session_name']);
     session_start();
+    $this->session = new CSession($this->config['session_key']);
+    $this->session->PopulateFromSession();
 
     // Set default date/time-zone
     date_default_timezone_set($this->config['timezone']);
@@ -95,6 +107,9 @@ class Cmovic implements ISingleton {
   * Theme Engine Render, renders the views using the selected theme.
   */
   public function ThemeEngineRender() {
+    // Save to session before output anything
+    $this->session->StoreInSession();
+
     // Get the paths and settings for the theme
     $themeName    = $this->config['theme']['name'];
     $themePath    = MOVIC_INSTALL_PATH . "/themes/{$themeName}";

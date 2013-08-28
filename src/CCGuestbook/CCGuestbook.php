@@ -38,8 +38,9 @@ class CCGuestbook extends CObject implements IController, IHasSQL {
     }            
     elseif(isset($_POST['doCreate'])) {
       $this->CreateTableInDatabase();
-    }            
-    header('Location: ' . $this->request->CreateUrl('guestbook'));
+    } 
+    $this->RedirectTo($this->request->controller);
+    //header('Location: ' . $this->request->CreateUrl('guestbook'));
   }
 
   /**
@@ -65,6 +66,7 @@ class CCGuestbook extends CObject implements IController, IHasSQL {
    */
   private function SaveNewToDatabase($entry) {
     $this->db->ExecuteQuery(self::SQL('insert into guestbook'), array($entry)); 
+    $this->session->AddMessage('success', 'Successfully inserted new message.');
     if($this->db->RowCount() != 1) {
       die('Failed to insert new guestbook item into database.');
     }
@@ -75,6 +77,7 @@ class CCGuestbook extends CObject implements IController, IHasSQL {
   */
   private function DeleteAllFromDatabase() {
     $this->db->ExecuteQuery(self::SQL('delete from guestbook'));
+    $this->session->AddMessage('info', 'Removed all messages from the database table.');
   }
 
   /**
@@ -95,6 +98,7 @@ class CCGuestbook extends CObject implements IController, IHasSQL {
   private function CreateTableInDatabase() {
     try {
       $this->db->ExecuteQuery(self::SQL('create table guestbook'));
+      $this->session->AddMessage('notice', 'Successfully created the database tables (or left them untouched if they already existed).');
     } catch(Exception$e) {
       die("Failed to open database: " . $this->config['database'][0]['dsn'] . "</br>" . $e);
     }

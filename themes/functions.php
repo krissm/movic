@@ -5,6 +5,22 @@
 */
 
 /**
+* Get messages stored in flash-session.
+*/
+function get_messages_from_session() {
+  $messages = Cmovic::Instance()->session->GetMessages();
+  $html = null;
+  if(!empty($messages)) {
+    foreach($messages as $val) {
+      $valid = array('info', 'notice', 'success', 'warning', 'error', 'alert');
+      $class = (in_array($val['type'], $valid)) ? $val['type'] : 'info';
+      $html .= "<div class='$class'>{$val['message']}</div>\n";
+    }
+  }
+  return $html;
+}
+
+/**
 * Create a url by prepending the base_url.
 */
 function base_url($url) {
@@ -50,9 +66,9 @@ function get_debug() {
   if(isset($mo->config['debug']['movic']) && $mo->config['debug']['movic']) {
     $html .= "<hr><h3>Debuginformation</h3><p>The content of Cmovic:</p><pre>" . htmlent(print_r($mo, true)) . "</pre>";
   }    
-//  if(isset($mo->config['debug']['session']) && $mo->config['debug']['session']) {
-//    $html .= "<hr><h3>SESSION</h3><p>The content of Cmovic->session:</p><pre>" . htmlent(print_r($mo->session, true)) . "</pre>";
-//    $html .= "<p>The content of \$_SESSION:</p><pre>" . htmlent(print_r($_SESSION, true)) . "</pre>";
-//  }    
+ if(isset($mo->config['debug']['session']) && $mo->config['debug']['session']) {
+   $html .= "<hr><h3>SESSION</h3><p>The content of Cmovic->session:</p><pre>" . htmlent(print_r($mo->session, true)) . "</pre>";
+   $html .= "<p>The content of \$_SESSION:</p><pre>" . htmlent(print_r($_SESSION, true)) . "</pre>";
+ }    
   return $html;
 }
