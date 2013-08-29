@@ -41,7 +41,8 @@ class CCGuestbook extends CObject implements IController {
     elseif(isset($_POST['doCreate'])) {
       $this->guestbookModel->Init();
     } 
-    $this->RedirectTo($this->request->controller);
+    $this->RedirectTo($this->request->CreateUrl($this->request->controller));
+//    $this->RedirectTo($this->request->controller);
     //header('Location: ' . $this->request->CreateUrl('guestbook'));
   }
   

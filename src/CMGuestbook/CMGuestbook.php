@@ -1,4 +1,4 @@
-  <?php
+<?php
 /**
  * A model for a guestbok, to show off some basic controller & model-stuff.
  * 
