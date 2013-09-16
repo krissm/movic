@@ -21,6 +21,17 @@ function get_messages_from_session() {
 }
 
 /**
+ * Create a url to an internal resource.
+ *
+ * @param string the whole url or the controller. Leave empty for current controller.
+ * @param string the method when specifying controller as first argument, else leave empty.
+ * @param string the extra arguments to the method, leave empty if not using method.
+ */
+function create_url($urlOrController=null, $method=null, $arguments=null) {
+  return Cmovic::Instance()->request->CreateUrl($urlOrController, $method, $arguments);
+}
+
+/**
 * Create a url by prepending the base_url.
 */
 function base_url($url) {

@@ -18,7 +18,7 @@ $mo->config['debug']['session'] 				= true;
 $mo->config['debug']['timer'] 					= true;
 $mo->config['debug']['db-num-queries'] 	= true;
 $mo->config['debug']['db-queries'] 			= true;
-$mo->config['session_key']  						= 'movic';
+
 
 /**
 * Set database(s).
@@ -29,6 +29,7 @@ $mo->config['database'][0]['dsn'] = 'sqlite:' . MOVIC_SITE_PATH . '/data/.ht.sql
 * Define session name
 */
 $mo->config['session_name'] = preg_replace('/[:\.\/-_]/', '', $_SERVER["SERVER_NAME"]);
+$mo->config['session_key'] 	= 'movic';
 
 /*
 * Define server timezone
@@ -57,7 +58,9 @@ $mo->config['language'] = 'en';
 $mo->config['controllers'] = array(
 	'index' => array('enabled' => true,'class' => 'CCIndex'),
 	'developer' => array('enabled' => true,'class' => 'CCDeveloper'),
-	'guestbook' => array('enabled' => true, 'class' => 'CCGuestbook'),);
+	'guestbook' => array('enabled' => true, 'class' => 'CCGuestbook'),
+	'user' => array('enabled' => true, 'class' => 'CCUser'),	
+	);
 
 /**
 * Settings for the theme.
