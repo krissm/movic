@@ -16,16 +16,17 @@ class Cmovic implements ISingleton {
   public $views;
   public $session;
   public $timer = array();
+  public $user;
 
-   /**
-    * Singleton pattern. Get the instance of the latest created object or create a new one. 
-    * @return Cmovic The instance of this class.
-    */
-   public static function Instance() {
-      if(self::$instance == null) {
-         self::$instance = new Cmovic();
-      }
-      return self::$instance;
+  /**
+   * Singleton pattern. Get the instance of the latest created object or create a new one. 
+   * @return Cmovic The instance of this class.
+  */
+  public static function Instance() {
+    if(self::$instance == null) {
+      self::$instance = new Cmovic();
+    }
+    return self::$instance;
    }
 
    /**
@@ -55,6 +56,9 @@ class Cmovic implements ISingleton {
 
     // Create a container for all views and theme data
     $this->views = new CViewContainer();
+
+    // Create a object for the user
+    $this->user = new CMUser($this);
   }
 
   /**

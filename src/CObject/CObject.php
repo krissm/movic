@@ -12,18 +12,21 @@ class CObject {
    public $db;
    public $views;
    public $session;
-
+   public $user;
    /**
     * Constructor
     */
-   protected function __construct() {
-    $mo = Cmovic::Instance();
+   protected function __construct($mo=null) {
+    if(!$mo){
+      $mo = Cmovic::Instance();
+    }
     $this->config   = &$mo->config;
     $this->request  = &$mo->request;
     $this->data     = &$mo->data;
     $this->db       = &$mo->db;
     $this->views    = &$mo->views;
     $this->session  = &$mo->session;
+    $this->user     = &$mo->user;
   }
 
   /**
