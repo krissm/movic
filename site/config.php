@@ -28,7 +28,7 @@ $mo->config['database'][0]['dsn'] = 'sqlite:' . MOVIC_SITE_PATH . '/data/.ht.sql
 /*
 * Define session name
 */
-$mo->config['session_name'] = preg_replace('/[:\.\/-_]/', '', $_SERVER["SERVER_NAME"]);
+$mo->config['session_name'] = preg_replace('/[:\.\/-_]/', '', __DIR__);
 $mo->config['session_key'] 	= 'movic';
 
 /*
@@ -56,10 +56,11 @@ $mo->config['language'] = 'en';
 * which is called in the frontcontroller phase from index.php.
 */
 $mo->config['controllers'] = array(
-	'index' => array('enabled' => true,'class' => 'CCIndex'),
+	'index' 		=> array('enabled' => true,'class' => 'CCIndex'),
 	'developer' => array('enabled' => true,'class' => 'CCDeveloper'),
 	'guestbook' => array('enabled' => true, 'class' => 'CCGuestbook'),
-	'user' => array('enabled' => true, 'class' => 'CCUser'),	
+	'user' 			=> array('enabled' => true, 'class' => 'CCUser'),
+	'acp' 	    => array('enabled' => true,'class' => 'CCAdminControlPanel'),	
 	);
 
 /**
