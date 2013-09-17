@@ -115,7 +115,7 @@ class Cmovic implements ISingleton {
     $themePath    = MOVIC_INSTALL_PATH . "/themes/{$themeName}";
     $themeUrl     = $this->request->base_url . "themes/{$themeName}";
     
-    // Add stylesheet path to the $ly->data array
+    // Add stylesheet path to the $mo->data array
     $this->data['stylesheet'] = "{$themeUrl}/style.css";
 
     // Include the global functions.php and the functions.php that are part of the theme

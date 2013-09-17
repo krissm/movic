@@ -29,7 +29,7 @@ class CObject {
   /**
    * Redirect to another url and store the session
    */
-  protected function RedirectTo($url) {
+  protected function RedirectTo($urlOrController=null, $method=null) {
     $mo = Cmovic::Instance();
     if(isset($mo->config['debug']['db-num-queries']) && $mo->config['debug']['db-num-queries'] && isset($mo->db)) {
       $this->session->SetFlash('database_numQueries', $this->db->GetNumQueries());
@@ -41,7 +41,7 @@ class CObject {
       $this->session->SetFlash('timer', $mo->timer);
     }    
     $this->session->StoreInSession();
-    header('Location: ' . $this->request->CreateUrl($url));
+    header('Location: ' . $this->request->CreateUrl($urlOrController, $method));
   }
 
   /**

@@ -1,11 +1,9 @@
 <?php
 /**
 * Database wrapper, provides a database API for the framework but hides details of implementation.
-*
 * @package LydiaCore
 */
 class CMDatabase {
-
    /**
     * Members
     */
@@ -13,7 +11,6 @@ class CMDatabase {
   private $stmt = null;
   private static $numQueries = 0;
   private static $queries = array();
-
 
   /**
    * Constructor

@@ -11,7 +11,7 @@
   </div>
   <div id="main" role="main">
     <?=get_messages_from_session()?>
-    <!--<?=$main?>-->
+    <?=@$main?>
     <?=render_views()?>
   </div>
   <div id="footer">

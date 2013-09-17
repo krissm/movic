@@ -47,7 +47,6 @@ class CSession {
     $this->data['flash'][$key] = $value;
   }
 
-
   /**
    * Get flash values, if any.
    */
@@ -57,7 +56,6 @@ class CSession {
 
   /**
    * Add message to be displayed to user on next pageload. Store in flash.
-   *
    * @param $type string the type of message, for example: notice, info, success, warning, error.
    * @param $message string the message.
    */
@@ -67,7 +65,6 @@ class CSession {
 
 	/**
 	 * Get messages, if any. Each message is composed of a key and value. Use the key for styling.
-	 *
 	 * @returns array of messages. Each array-item contains a key and value.
 	 */
 	public function GetMessages() {

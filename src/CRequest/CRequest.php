@@ -88,22 +88,6 @@ class CRequest {
   }
 
   /**
-  * Create a url in the way it should be created.
-  *
-  */
-  // public function CreateUrl($url=null) {
-  //   $prepend = $this->base_url;
-  //   if($this->cleanUrl) {
-  //     ;
-  //   } elseif ($this->querystringUrl) {
-  //     $prepend .= 'index.php?q=';
-  //   } else {
-  //     $prepend .= 'index.php/';
-  //   }
-  //   return $prepend . rtrim($url, '/');
-  // }
-
-  /**
    * Create a url in the way it should be created.
    *
    * @param $url string the relative url or the controller
