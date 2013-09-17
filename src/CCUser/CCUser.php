@@ -33,19 +33,31 @@ class CCUser extends CObject implements IController {
       'user'=>$this->user->GetProfile(),
      ));
    }
-  
+
   /**
-   * Authenticate and login a user.
-   */
-  public function Login($akronymOrEmail=null, $password=null) {
-    if($akronymOrEmail && $password) {
-      $this->user->Login($akronymOrEmail, $password);
-      $this->RedirectToController('profile');
-    }
+  * Authenticate and login a user.
+  */
+  public function Login() {
+    $form = new CForm();
+    $form->AddElement('acronym', array('label'=>'Acronym or email:', 'type'=>'text'));
+    $form->AddElement('password', array('label'=>'Password:', 'type'=>'password'));
+    $form->AddElement('doLogin', array('value'=>'Login', 'type'=>'submit', 'callback'=>array($this, 'DoLogin')));
+    $form->CheckIfSubmitted();
+
     $this->views->SetTitle('Login');
-    $this->views->AddInclude(__DIR__ . '/login.tpl.php');
+    $this->views->AddInclude(__DIR__ . '/login.tpl.php', array('login_form'=>$form->GetHTML()));     
   }
-  
+
+  /**
+  * Perform a login of the user as callback on a submitted form.
+  */
+  public function DoLogin($form) {
+    if($this->user->Login($form->GetValue('acronym'), $form->GetValue('password'))) {
+      $this->RedirectToController('profile');
+    } else {
+      $this->RedirectToController('login');      
+    }
+  }
 
   /**
    * Logout a user.
@@ -55,7 +67,6 @@ class CCUser extends CObject implements IController {
     $this->RedirectToController();
   }
   
-
   /**
    * Init the user database.
    */
