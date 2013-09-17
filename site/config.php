@@ -1,7 +1,6 @@
 <?php
 /**
 * Site configuration, this file is changed by user per site.
-*
 */
 
 /*
@@ -18,7 +17,6 @@ $mo->config['debug']['session'] 				= true;
 $mo->config['debug']['timer'] 					= true;
 $mo->config['debug']['db-num-queries'] 	= true;
 $mo->config['debug']['db-queries'] 			= true;
-
 
 /**
 * Set database(s).
@@ -56,11 +54,11 @@ $mo->config['language'] = 'en';
 * which is called in the frontcontroller phase from index.php.
 */
 $mo->config['controllers'] = array(
-	'index' 		=> array('enabled' => true,'class' => 'CCIndex'),
-	'developer' => array('enabled' => true,'class' => 'CCDeveloper'),
+	'index' 		=> array('enabled' => true, 'class' => 'CCIndex'),
+	'developer' => array('enabled' => true, 'class' => 'CCDeveloper'),
 	'guestbook' => array('enabled' => true, 'class' => 'CCGuestbook'),
 	'user' 			=> array('enabled' => true, 'class' => 'CCUser'),
-	'acp' 	    => array('enabled' => true,'class' => 'CCAdminControlPanel'),	
+	'acp' 	    => array('enabled' => true, 'class' => 'CCAdminControlPanel'),	
 	);
 
 /**

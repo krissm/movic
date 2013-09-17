@@ -1,12 +1,4 @@
 <?php
-//echo "<h1>I'm Movic - index.php</h1>";
-//echo "<p>You are most welcome!</p>";
-//echo "<p>REQUEST_URI - " . htmlentities($_SERVER['REQUEST_URI']) . "</p>";
-//echo "<p>SCRIPT_NAME - " . htmlentities($_SERVER['SCRIPT_NAME']) . "</p>";
-
-//
-// PHASE: BOOTSTRAP
-//
 //"bootstrap" är initieringsfasen där de oundvikliga grunderna etableras och defineras. Dessa behövs i varje förfrågan. 
 //---------------------------------------------------------------------------------------
 define('MOVIC_INSTALL_PATH', dirname(__FILE__));
@@ -16,18 +8,12 @@ require(MOVIC_INSTALL_PATH.'/src/Cmovic/bootstrap.php');
 
 $mo = Cmovic::Instance(); //skapas och initieras $mo som blir ett globalt objekt som är kärnan i ramverket. Via variabeln $mo kan man alltid nå det som behövs.
 
-
-//
 // PHASE: FRONTCONTROLLER ROUTE
-//
 //"frontController->route" tar hand om förfrågan och tolkar ut vilken kontroller och metod som skall anropas. Därefter sker all bearbetning i kontrollern. 
 //---------------------------------------------------------------------------------------
 $mo->FrontControllerRoute();
 
-
-//
 // PHASE: THEME ENGINE RENDER
-//
 //"themeEngine->render" skapar själva slutresultatet, webbsidan. Allt innehåll finns tillgängligt och med hjälp av template-filer överförs innehållet till HTML-filer.
 //---------------------------------------------------------------------------------------
 $mo->ThemeEngineRender();
