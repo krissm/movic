@@ -9,9 +9,9 @@
 */
 function login_menu() {
   $mo = Cmovic::Instance();
-  if($mo->user->IsAuthenticated()) {
-    $items = "<a href='" . create_url('user/profile') . "'>" . $mo->user->GetAcronym() . "</a> ";
-    if($mo->user->IsAdministrator()) {
+  if($mo->user['isAuthenticated']) {
+    $items = "<a href='" . create_url('user/profile') . "'>" . $mo->user['acronym'] . "</a> ";
+    if($mo->user['hasRoleAdministrator']) {
       $items .= "<a href='" . create_url('acp') . "'>acp</a> ";
     }
     $items .= "<a href='" . create_url('user/logout') . "'>logout</a> ";

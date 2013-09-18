@@ -59,3 +59,10 @@ body{
   float:right;
   font-size:smaller;
 }
+
+/**
+* Forms
+*/
+input{font:inherit;}
+input[readonly]{color:#666;}
+label{font-size:smaller;}
