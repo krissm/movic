@@ -10,7 +10,7 @@
 function login_menu() {
   $mo = Cmovic::Instance();
   if($mo->user['isAuthenticated']) {
-    $items = "<a href='" . create_url('user/profile') . "'>" . $mo->user['acronym'] . "</a> ";
+    $items = "<a href='" . create_url('user/profile') . "'><img class='gravatar' src='" . get_gravatar(20) . "' alt=''> " . $mo->user['acronym'] . "</a> ";
     if($mo->user['hasRoleAdministrator']) {
       $items .= "<a href='" . create_url('acp') . "'>acp</a> ";
     }
@@ -18,8 +18,15 @@ function login_menu() {
   } else {
     $items = "<a href='" . create_url('user/login') . "'>login</a> ";
   }
-  return "<nav>$items</nav>";
+  return "<nav id='login-menu'>$items</nav>";
 }
+
+/**
+* Get a gravatar based on the user's email.
+*/
+function get_gravatar($size=null) {
+  return 'http://www.gravatar.com/avatar/' . md5(strtolower(trim(Cmovic::Instance()->user['email']))) . '.jpg?' . ($size ? "s=$size" : null);
+} 
 
 /**
 * Get messages stored in flash-session.
@@ -94,9 +101,10 @@ function get_debug() {
   if(isset($mo->config['debug']['movic']) && $mo->config['debug']['movic']) {
     $html .= "<hr><h3>Debuginformation</h3><p>The content of Cmovic:</p><pre>" . htmlent(print_r($mo, true)) . "</pre>";
   }    
- if(isset($mo->config['debug']['session']) && $mo->config['debug']['session']) {
+  if(isset($mo->config['debug']['session']) && $mo->config['debug']['session']) {
    $html .= "<hr><h3>SESSION</h3><p>The content of Cmovic->session:</p><pre>" . htmlent(print_r($mo->session, true)) . "</pre>";
    $html .= "<p>The content of \$_SESSION:</p><pre>" . htmlent(print_r($_SESSION, true)) . "</pre>";
- }    
+  }    
   return $html;
+
 }

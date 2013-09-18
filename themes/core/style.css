@@ -59,6 +59,9 @@ body{
   float:right;
   font-size:smaller;
 }
+#login-menu img.gravatar{vertical-align:middle;}
+#login-menu a{text-decoration:none;}
+#login-menu a:hover{text-decoration:underline;}
 
 /**
 * Forms
