@@ -2,16 +2,16 @@
 /**
 * Helpers for the template file.
 */
-$mo->data['header'] = '
+$mo->data ['header'] = '
 		<div id="banner"> 
-        <img class="site-logo" src="' . dirname($_SERVER['SCRIPT_NAME']) . '/themes/core/img/mvclogo.jpg" alt="logo" width="120" height="120" />
-      <p class="site-title">PHPmvc</p> 
-      <p class="site-slogan">A PHP-based and MVC-inspired story</p> 
-    </div> ';
+        <a href=' . dirname ( $_SERVER ['SCRIPT_NAME'] ) . ' ><img class="site-logo" src="' . dirname ( $_SERVER ['SCRIPT_NAME'] ) . '/themes/core/img/mvclogo.jpg" alt="logo" width="120" height="120" /></a> 
+      	<p class="site-title">PHPmvc</p> 
+      	<p class="site-slogan">A PHP-based and MVC-inspired story</p>
+    	</div> ';
 
-//'<h1>Header: Movic</h1>';
-//$mo->data['main']   = '<p>Main: Now with a theme engine, Not much more to report for now.</p>';
-$mo->data['footer'] = <<<EOD
+// '<h1>Header: Movic</h1>';
+// $mo->data['main'] = '<p>Main: Now with a theme engine, Not much more to report for now.</p>';
+$mo->data ['footer'] = <<<EOD
 		
 		<p>Footer: &copy; Movic by Kristoffer Magnusson</p>
 
