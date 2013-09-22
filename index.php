@@ -1,5 +1,5 @@
 <?php
-//git test "bootstrap" är initieringsfasen där de oundvikliga grunderna etableras och defineras. Dessa behövs i varje förfrågan. 
+//"bootstrap" är initieringsfasen där de oundvikliga grunderna etableras och defineras. Dessa behövs i varje förfrågan. 
 //---------------------------------------------------------------------------------------
 define('MOVIC_INSTALL_PATH', dirname(__FILE__));
 define('MOVIC_SITE_PATH', MOVIC_INSTALL_PATH . '/site'); //det är i denna katalog som användaren lägger all sin egen kod som utökar ramverkets standardkod. Det blir alltså en katalog för själva applikationen eller webbplatsen/siten.

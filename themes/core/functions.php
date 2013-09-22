@@ -4,7 +4,7 @@
 */
 $mo->data ['header'] = '
 		<div id="banner"> 
-        <a href=' . dirname ( $_SERVER ['SCRIPT_NAME'] ) . ' ><img class="site-logo" src="' . dirname ( $_SERVER ['SCRIPT_NAME'] ) . '/themes/core/img/mvclogo.jpg" alt="logo" width="120" height="120" /></a> 
+        <a href="' . dirname ( $_SERVER ['SCRIPT_NAME'] ) . '"><img class="site-logo" src="' . dirname ( $_SERVER ['SCRIPT_NAME'] ) . '/themes/core/img/mvclogo.jpg" alt="logo" width="120" height="120" /></a> 
       	<p class="site-title">PHPmvc</p> 
       	<p class="site-slogan">A PHP-based and MVC-inspired story</p>
     	</div> ';
