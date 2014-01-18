@@ -2,7 +2,9 @@
 /**
 * Main class for movic, holds everything.
 *
-* Som det är nu finns det två sätt olika sätt att få tag i informationen i Cmovic, antingen som global variabel $mo eller via dess instans-metod, Cmovic::Instance(), som returnerar instansen av Cmovic enligt singleton design mönster.
+* Som det är nu finns det två sätt olika sätt att få tag i informationen i Cmovic, 
+* antingen som global variabel $mo eller via dess instans-metod, 
+* Cmovic::Instance(), som returnerar instansen av Cmovic enligt singleton design mönster.
 *
 * @package movicCore
 */
@@ -31,13 +33,17 @@ class Cmovic implements ISingleton {
 
    /**
     * Constructor
+    * Initiates Session, Database, CViewContainer, and MUser objects, 
+    * with the help of the config settings (the config array member variable of this object)
     */
   protected function __construct() {
     // time page generation
     $this->timer['first'] = microtime(true); 
 
-    // include the site specific config.php and create a ref to $mo to be used by config.php
-    $mo = &$this; //en fix för att variabeln $mo skall gå att använda direkt i filen site/config.php.
+    // include the site specific config.php, and create a variable $mo which holds a 
+    // reference to the Movic instance. 
+    $mo = &$this; //en fix för att variabeln $mo skall gå att använda direkt i filen 
+    // site/config.php.
     require(MOVIC_SITE_PATH.'/config.php');
 
     // Start a named session
@@ -51,7 +57,7 @@ class Cmovic implements ISingleton {
 
     // Create a database object.
     if(isset($this->config['database'][0]['dsn'])) {
-      $this->db = new CMDatabase($this->config['database'][0]['dsn']);
+      $this->db = new CDatabase($this->config['database'][0]['dsn']);
     }
 
     // Create a container for all views and theme data
@@ -62,7 +68,10 @@ class Cmovic implements ISingleton {
   }
 
   /**
-  * Frontcontroller, check url and route to controllers.
+  * Frontcontroller check url and route to controllers.
+  * The controllers' methods sets the Session, Database, View, and User member variable 
+  * with the help of model objects 
+  * Fill $views : CViewContainer
   */
   public function FrontControllerRoute() {
     // Step 1
@@ -109,6 +118,7 @@ class Cmovic implements ISingleton {
 
   /**
   * Theme Engine Render, renders the views using the selected theme.
+  * extract all data variables and view data to gain access to them in the theme view
   */
   public function ThemeEngineRender() {
     // Save to session before output anything

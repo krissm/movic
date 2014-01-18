@@ -1,6 +1,7 @@
 <?php
 /**
- * Wrapper for session, read and store values on session. Maintains flash values for one pageload.
+ * Wrapper for session, read and store values on session. 
+ * Maintains flash values for one pageload.
  *
  * @package LydiaCore
  */
@@ -36,9 +37,15 @@ class CSession {
    /**
    * Get, Set or Unset the authenticated user
    */
-  public function SetAuthenticatedUser($profile) { $this->data['authenticated_user'] = $profile; }
-  public function UnsetAuthenticatedUser() { unset($this->data['authenticated_user']); }
-  public function GetAuthenticatedUser() { return $this->authenticated_user; }
+  public function SetAuthenticatedUser($profile) { 
+  	$this->data['authenticated_user'] = $profile; 
+  }
+  public function UnsetAuthenticatedUser() { 
+  	unset($this->data['authenticated_user']); 
+  }
+  public function GetAuthenticatedUser() { 
+  	return $this->authenticated_user; 
+  }
 
   /**
    * Set flash values, to be remembered one page request

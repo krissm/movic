@@ -23,6 +23,12 @@ $mo->config['debug']['db-queries'] 			= true;
 */
 $mo->config['database'][0]['dsn'] = 'sqlite:' . MOVIC_SITE_PATH . '/data/.ht.sqlite';
 
+/**
+ * How to hash password of new users, choose from: plain, md5salt, md5, sha1salt, sha1.
+ */
+$mo->config['hashing_algorithm'] = 'sha1salt';
+
+
 /*
 * Define session name
 */
@@ -82,3 +88,4 @@ $mo->config['base_url'] = null;
 * querystring  = 2      => index.php?q=controller/method/arg1/arg2/arg3
 */
 $mo->config['url_type'] = 1;
+

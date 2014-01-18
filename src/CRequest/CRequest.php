@@ -14,13 +14,10 @@ class CRequest {
 	
 	/**
 	 * Constructor
-	 *
 	 * Default is to generate url's of type index.php/controller/method/arg1/arg2/arg2
-	 *
-	 * @param boolean $clean
-	 *        	generate clean url's of type /controller/method/arg1/arg2/arg2
+	 * @param boolean $clean generate clean url's of type /controller/method/arg1/arg2/arg2
 	 * @param boolean $querystring
-	 *        	generate clean url's of type index.php?q=controller/method/arg1/arg2/arg2
+	 * generate clean url's of type index.php?q=controller/method/arg1/arg2/arg2
 	 */
 	public function __construct($urlType = 0) {
 		$this->cleanUrl = ($urlType === 1) ? true : false;
@@ -29,13 +26,9 @@ class CRequest {
 	
 	/**
 	 * Create a url in the way it should be created.
-	 *
-	 * @param $url string
-	 *        	the relative url or the controller
-	 * @param $method string
-	 *        	the method to use, $url is then the controller or empty for current controller.
-	 * @param $arguments string/array
-	 *        	the extra arguments to send to the method
+	 * @param $url string	the relative url or the controller
+	 * @param $method string the method to use, $url is then the controller or empty for current controller.
+	 * @param $arguments string/array the extra arguments to send to the method
 	 * @return s string the url
 	 */
 	public function CreateCleanUrl($url = null, $method = null, $arguments = null) {
@@ -48,13 +41,9 @@ class CRequest {
 	
 	/**
 	 * Create a url in the way it should be created.
-	 *
-	 * @param $url string
-	 *        	the relative url or the controller
-	 * @param $method string
-	 *        	the method to use, $url is then the controller or empty for current controller.
-	 * @param $arguments string/array
-	 *        	the extra arguments to send to the method
+	 * @param $url string	the relative url or the controller
+	 * @param $method string the method to use, $url is then the controller or empty for current controller.
+	 * @param $arguments string/array	the extra arguments to send to the method
 	 * @return s string the url
 	 */
 	public function CreateUrl($url = null, $method = null, $arguments = null) {
@@ -100,13 +89,9 @@ class CRequest {
 	
 	/**
 	 * Parse the current url request and divide it in controller, method and arguments.
-	 *
 	 * Calculates the base_url of the installation. Stores all useful details in $this.
-	 *
-	 * @param $baseUrl string
-	 *        	use this as a hardcoded baseurl.
-	 * @param $routing array
-	 *        	key/val to use for routing if url matches key.
+	 * @param $baseUrl string	use this as a hardcoded baseurl.
+	 * @param $routing array key/val to use for routing if url matches key.
 	 */
 	public function Init($baseUrl = null, $routing = null) {
 		$requestUri = $_SERVER ['REQUEST_URI'];
@@ -198,8 +183,23 @@ class CRequest {
 		$url = "http";
 		$url .= (@$_SERVER ["HTTPS"] == "on") ? 's' : '';
 		$url .= "://";
-		$serverPort = ($_SERVER ["SERVER_PORT"] == "80") ? '' : (($_SERVER ["SERVER_PORT"] == 443 && @$_SERVER ["HTTPS"] == "on") ? '' : ":{$_SERVER['SERVER_PORT']}");
-		$url .= $_SERVER ["SERVER_NAME"] . $serverPort . htmlspecialchars ( $_SERVER ["REQUEST_URI"] );
+		$serverPort = ($_SERVER ["SERVER_PORT"] == "80") ? '' : 
+				(($_SERVER ["SERVER_PORT"] == 443 && @$_SERVER ["HTTPS"] == "on") ? '' : 
+				":{$_SERVER['SERVER_PORT']}");
+		$url .= $_SERVER ["SERVER_NAME"] . $serverPort . 
+						htmlspecialchars ( $_SERVER ["REQUEST_URI"] );
 		return $url;
 	}
 }
+
+
+
+
+
+
+/////////////////////////////
+
+
+
+
+

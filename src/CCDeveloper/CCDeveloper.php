@@ -28,23 +28,23 @@ class CCDeveloper extends CObject implements IController {
     $this->Menu();
     
     $url = 'developer/links';
-    $current      = $this->request->CreateUrl($url);
+    $current = $this->request->CreateUrl($url);
 
     $this->request->cleanUrl = false;
     $this->request->querystringUrl = false;    
-    $default      = $this->request->CreateUrl($url);
+    $default = $this->request->CreateUrl($url);
     
     $this->request->cleanUrl = true;
-    $clean        = $this->request->CreateUrl($url);    
+    $clean = $this->request->CreateUrl($url);    
     
     $this->request->cleanUrl = false;
     $this->request->querystringUrl = true;    
-    $querystring  = $this->request->CreateUrl($url);
+    $querystring = $this->request->CreateUrl($url);
     
     $this->data['main'] .= <<<EOD
 <h2>CRequest::CreateUrl()</h2>
-<p>Here is a list of urls created using above method with various settings. All links should lead to
-this same page.</p>
+<p>Here is a list of urls created using above method with various settings. 
+	All links should lead to this same page.</p>
 <ul>
 <li><a href='$current'>This is the current setting</a>
 <li><a href='$default'>This would be the default url</a>
@@ -83,11 +83,10 @@ EOD;
     */
    public function DisplayObject() {   
       $this->Menu();
-      
       $this->data['main'] .= <<<EOD
-
               <h2>Dumping content of CDeveloper</h2>
-              <p>Here is the content of the controller, including properties from CObject which holds access to common resources in Cmovic.</p>
+              <p>Here is the content of the controller, including properties 
+      						from CObject which holds access to common resources in Cmovic.</p>
 EOD;
       $this->data['main'] .= '<pre>' . htmlentities(print_r($this, true)) . '</pre>';
    }  
