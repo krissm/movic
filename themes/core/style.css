@@ -69,3 +69,5 @@ body{
 input{font:inherit;}
 input[readonly]{color:#666;}
 label{font-size:smaller;}
+.validation-failed{border:2px solid red;}
+.validation-message{color:red;font-size:smaller;}

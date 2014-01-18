@@ -17,6 +17,10 @@ class CFormUserLogin extends CForm {
          																						)
          																		 )	
          							);
+    $this->SetValidation('acronym', array('not_empty'))
+         ->SetValidation('password', array('not_empty'));
   }
+  
+  
   
 }
