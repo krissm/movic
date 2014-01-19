@@ -3,9 +3,10 @@
 * Site configuration, this file is changed by user per site.
 */
 
-/*
-* Set level of error reporting
-*/
+
+/**
+ * Set level of error reporting
+ */
 error_reporting(-1);
 ini_set('display_errors', 1);
 
@@ -28,24 +29,28 @@ $mo->config['database'][0]['dsn'] = 'sqlite:' . MOVIC_SITE_PATH . '/data/.ht.sql
  */
 $mo->config['hashing_algorithm'] = 'sha1salt';
 
+/**
+ * Allow or disallow creation of new user accounts.
+ */
+$mo->config['create_new_users'] = true;
 
-/*
+/**
 * Define session name
 */
 $mo->config['session_name'] = preg_replace('/[:\.\/-_]/', '', __DIR__);
 $mo->config['session_key'] 	= 'movic';
 
-/*
+/**
 * Define server timezone
 */
 $mo->config['timezone'] = 'Europe/Stockholm';
 
-/*
+/**
 * Define internal character encoding
 */
 $mo->config['character_encoding'] = 'UTF-8';
 
-/*
+/**
 * Define language
 */
 $mo->config['language'] = 'en';

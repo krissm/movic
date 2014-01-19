@@ -176,7 +176,7 @@ class CMUser extends CObject implements IHasSQL, ArrayAccess{
    * @returns array with 'salt' and 'password'.
    */
   public function CreatePassword($plain, $algorithm=null) {
-    $password = array(////////////////////////////
+    $password = array(/////I changed CMovic->Instance()->config... to $this, but both should work
       'algorithm'=>($algorithm ? $algorithm : $this->config['hashing_algorithm']),
       'salt'=>null
     );
@@ -209,6 +209,25 @@ class CMUser extends CObject implements IHasSQL, ArrayAccess{
   		case 'plain': return $password === $plain; break;
   		default: throw new Exception('Unknown hashing algorithm');
   	}
+  }
+  
+  /**
+   * Create new user.
+   *
+   * @param $acronym string the acronym.
+   * @param $password string the password plain text to use as base.
+   * @param $name string the user full name.
+   * @param $email string the user email.
+   * @returns boolean true if user was created or else false and sets failure message in session.
+   */
+  public function Create($acronym, $password, $name, $email) {
+  	$pwd = $this->CreatePassword($password);
+  	$this->db->ExecuteQuery(self::SQL('insert into user'), array($acronym, $name, $email, $pwd['algorithm'], $pwd['salt'], $pwd['password']));
+  	if($this->db->RowCount() == 0) {
+  		$this->AddMessage('error', "Failed to create user.");
+  		return false;
+  	}
+  	return true;
   }
 
 }
