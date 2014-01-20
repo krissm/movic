@@ -49,7 +49,7 @@ class CCUser extends CObject implements IController {
 	  if($form->Check() === false) {
 	    $this->AddMessage('notice', 'You must fill in acronym and password.');
 	    $this->RedirectToController('login');
-  }
+  	}
     $this->views->SetTitle('Login')
                 ->AddInclude(__DIR__ . '/login.tpl.php', array(
                   'login_form' => $form,
